@@ -1,7 +1,5 @@
 import {expect, test} from 'bun:test';
 
-console.log('Hello via Bun!');
-
 test('9. Plindrome Number', () => {
 	expect(isPalindrome(121)).toBeTrue();
 	expect(isPalindrome(-121)).toBeFalse();
