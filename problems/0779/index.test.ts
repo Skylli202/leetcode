@@ -1,7 +1,5 @@
 import {expect, test} from 'bun:test';
 
-console.log('Hello via Bun!');
-
 test('779. K-th Symbol in Grammar', () => {
 	expect(kthGrammar(1, 1)).toBe(0);
 	expect(kthGrammar(2, 1)).toBe(0);
