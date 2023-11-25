@@ -62,26 +62,36 @@ class ListNode {
 	}
 }
 
-function addTwoNumbers(
-	l1: ListNode | undefined,
-	l2: ListNode | undefined,
-): ListNode | undefined {
+function addTwoNumbers(l1: ListNode | undefined, l2: ListNode | undefined): ListNode | undefined {
 	const resultHead = new ListNode();
-	let result = resultHead;
+	let tmp = resultHead;
+	let i = 0;
 	let carryOver = 0;
-	while (l1?.val && l2?.val) {
-		result.val = l1.val + l2.val + carryOver;
-		while (result.val >= 10) {
-			result.val -= 10;
+	while (l1?.val !== undefined || l2?.val !== undefined) {
+		if (i !== 0) {
+			tmp.next = new ListNode();
+			tmp = tmp.next;
+		}
+
+		const l1Val = l1?.val ? l1.val : 0;
+		const l2Val = l2?.val ? l2.val : 0;
+		tmp.val = l1Val + l2Val + carryOver;
+		carryOver = 0;
+
+		while (tmp.val >= 10) {
+			tmp.val -= 10;
 			carryOver += 1;
 		}
 
-		l1 = l1.next;
-		l2 = l2.next;
-		result.next = new ListNode();
-		result = result.next;
+		console.log(i, l1Val, l2Val, carryOver, tmp.val);
+		l1 = l1?.next;
+		l2 = l2?.next;
+		i++;
+	}
+
+	if (carryOver) {
+		tmp.next = new ListNode(carryOver);
 	}
 
 	return resultHead;
 }
-
