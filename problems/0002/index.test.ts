@@ -78,12 +78,11 @@ function addTwoNumbers(l1: ListNode | undefined, l2: ListNode | undefined): List
 		tmp.val = l1Val + l2Val + carryOver;
 		carryOver = 0;
 
-		while (tmp.val >= 10) {
-			tmp.val -= 10;
-			carryOver += 1;
+		if (tmp.val >= 10) {
+			carryOver = tmp.val / 10;
+			tmp.val %= 10;
 		}
 
-		console.log(i, l1Val, l2Val, carryOver, tmp.val);
 		l1 = l1?.next;
 		l2 = l2?.next;
 		i++;
